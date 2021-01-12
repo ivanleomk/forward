@@ -5,8 +5,9 @@ import LandingLayout from '../components/layouts/LandingLayout';
 import Description from '../components/sections/Description';
 import {Text, Heading, Image, Stack} from '@chakra-ui/core';
 import Mentors from '../components/sections/Mentors';
+import getMentorList from '../api/getMentorList';
 
-export default function Landing() {
+export default function Landing({mentorList}) {
     return (
         <LandingLayout>
             <Hero
@@ -29,8 +30,16 @@ export default function Landing() {
                     Our mentors have recieved offers from or are working at
                 </Heading> */}
             <Description title="Our Mentors" subtitle="Meet the People Behind Forward">
-                <Mentors />
+                <Mentors mentorList={mentorList} />
             </Description>
         </LandingLayout>
     );
+}
+
+export async function getStaticProps() {
+    return {
+        props: {
+            mentorList: await getMentorList(),
+        },
+    };
 }

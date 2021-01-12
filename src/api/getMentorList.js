@@ -16,6 +16,7 @@ export default function getMentorList() {
                     // This function (`page`) will get called for each page of records.
 
                     records.forEach(function (record) {
+                        console.log(record);
                         const name = record.get('Name');
                         const location = record.get('Location');
                         const title = record.get('Title');
