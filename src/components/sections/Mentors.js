@@ -1,26 +1,39 @@
 import React, {useEffect} from 'react';
 import getMentorList from '../../api/getMentorList';
 
-const Mentors = ({mentorList}) => {
+export default function Mentors({mentorList}) {
     return (
         <>
-            {mentorList &&
-                mentorList.map(({name, location, industry, title}) => (
-                    <div>
-                        We have {name} at {location} working in {industry} which is a {title}
-                    </div>
-                ))}
+            {mentorList.map((item) => (
+                <div>
+                    <p>{item.name}</p> &nbsp;
+                    <p>{item.location}</p> &nbsp;
+                    <p>{item.industry}</p>
+                </div>
+            ))}
         </>
     );
-};
+}
 
-export default Mentors;
+// const Mentors = ({mentorList}) => {
+//     return (
+//         <>
+//             {mentorList &&
+//                 mentorList.map(({name, location, industry, title}) => (
+//                     <div>
+//                         We have {name} at {location} working in {industry} which is a {title}
+//                     </div>
+//                 ))}
+//         </>
+//     );
+// };
+
+// export default Mentors;
 
 export async function getStaticProps() {
-    const mentorList = await getMentorList();
     return {
         props: {
-            mentorList,
+            mentorList: await getMentorList(),
         },
     };
 }
