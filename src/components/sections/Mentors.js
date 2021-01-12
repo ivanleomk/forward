@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import getMentorList from '../../api/getMentorList';
 
 const Mentors = ({mentorList}) => {
-    console.log(mentorList);
     return (
         <>
             {mentorList &&
@@ -18,9 +17,10 @@ const Mentors = ({mentorList}) => {
 export default Mentors;
 
 export async function getStaticProps() {
+    const mentorList = await getMentorList();
     return {
         props: {
-            mentorList: await getMentorList(),
+            mentorList,
         },
     };
 }
