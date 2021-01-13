@@ -11,7 +11,7 @@ const Hero = ({title, subtitle, image, ctaLink, ctaText, ...rest}) => {
                 justify={{base: 'center', md: 'space-around', xl: 'space-between'}}
                 direction={{base: 'column-reverse', md: 'row'}}
                 wrap="no-wrap"
-                minH="70vh"
+                minH="85vh"
                 px={8}
                 mb={16}
                 {...rest}
@@ -43,9 +43,12 @@ const Hero = ({title, subtitle, image, ctaLink, ctaText, ...rest}) => {
                         {subtitle}
                     </Heading>
                     <Link href={ctaLink}>
-                        <Button colorScheme="teal" variant="outline">
-                            Get Involved &#8594;
-                        </Button>
+                        <button
+                            type="button"
+                            class="py-4 px-6  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 "
+                        >
+                            Get started
+                        </button>
                     </Link>
                 </Stack>
                 <Box w={{base: '80%', sm: '60%', md: '50%'}} mb={{base: 12, md: 0}}>
