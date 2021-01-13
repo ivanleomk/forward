@@ -1,5 +1,6 @@
 import {ThemeProvider, theme} from '@chakra-ui/core';
 import 'tailwindcss/tailwind.css';
+
 const customTheme = {
     ...theme,
     maxW: {
