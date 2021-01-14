@@ -1,6 +1,24 @@
-import React from 'react';
-
+import React, {useState} from 'react';
+import SubmitFormData from '../api/submitFormData';
 const ContactForm = () => {
+    const [fName, setfName] = React.useState('');
+    const [lName, setlName] = React.useState('');
+    const [industry, setIndustry] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [category, setCategory] = React.useState('mentoring');
+    const [description, setDescription] = React.useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(fName);
+        console.log(lName);
+        console.log(industry);
+        console.log(email);
+        console.log(category);
+        console.log(description);
+        SubmitFormData(fName, lName, industry, email, category, description);
+    };
+
     return (
         <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
             <div class="relative max-w-xl mx-auto">
@@ -56,7 +74,7 @@ const ContactForm = () => {
                     </p>
                 </div>
                 <div class="mt-12">
-                    <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <form onSubmit={handleSubmit} class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                         <div>
                             <label for="first_name" class="block text-sm font-medium text-gray-700">
                                 First name
@@ -64,7 +82,8 @@ const ContactForm = () => {
                             <div class="mt-1">
                                 <input
                                     type="text"
-                                    name="first_name"
+                                    value={fName}
+                                    onChange={(e) => setfName(e.target.value)}
                                     id="first_name"
                                     autocomplete="given-name"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
@@ -78,7 +97,8 @@ const ContactForm = () => {
                             <div class="mt-1">
                                 <input
                                     type="text"
-                                    name="last_name"
+                                    value={lName}
+                                    onChange={(e) => setlName(e.target.value)}
                                     id="last_name"
                                     autocomplete="family-name"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
@@ -92,7 +112,8 @@ const ContactForm = () => {
                             <div class="mt-1">
                                 <input
                                     type="text"
-                                    name="company"
+                                    value={industry}
+                                    onChange={(e) => setIndustry(e.target.value)}
                                     id="company"
                                     autocomplete="organization"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
@@ -106,7 +127,8 @@ const ContactForm = () => {
                             <div class="mt-1">
                                 <input
                                     id="email"
-                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     type="email"
                                     autocomplete="email"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
@@ -124,9 +146,11 @@ const ContactForm = () => {
                                     name="capacity"
                                     rows="4"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
                                 >
-                                    <option value="volvo">Mentoring</option>
-                                    <option value="saab">Being Mentored</option>
+                                    <option value="mentoring">Mentoring</option>
+                                    <option value="mentee">Being Mentored</option>
                                 </select>
                             </div>
                         </div>
@@ -138,7 +162,8 @@ const ContactForm = () => {
                             <div class="mt-1">
                                 <textarea
                                     id="message"
-                                    name="message"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
                                     rows="4"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                                 ></textarea>
