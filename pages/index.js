@@ -13,6 +13,7 @@ import Divider from '../app/components/Divider';
 import Testimonials from '../app/components/Testimonials';
 import Footer from '../app/components/Footer';
 import CallToAction from '../app/components/CallToAction';
+import ContactForm from '../app/components/ContactForm';
 
 const Landing = ({mentorList}) => {
     return (
@@ -21,7 +22,7 @@ const Landing = ({mentorList}) => {
             <Testimonials />
             <Mentors mentorList={mentorList} />
 
-            <CallToAction />
+            <ContactForm />
             <Footer />
         </>
     );
