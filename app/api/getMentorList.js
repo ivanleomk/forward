@@ -21,12 +21,14 @@ export default function getMentorList() {
                         const location = record.get('Location');
                         const title = record.get('Title');
                         const industry = record.get('Industry');
+                        const image = record.get('Photo');
 
                         mentors.push({
                             name,
                             location,
                             title,
                             industry,
+                            image,
                         });
                     });
 

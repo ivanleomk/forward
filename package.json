@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^1.1.4",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "airtable": "^0.10.1",
     "autoprefixer": "^10.2.1",
     "framer-motion": "^3.2.1",
@@ -16,7 +17,8 @@
     "postcss": "^8.2.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "tailwindcss-aspect-ratio": "^3.0.0"
   },
   "devDependencies": {
     "@chakra-ui/core": "^0.8.0",

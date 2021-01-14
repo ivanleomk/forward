@@ -3,11 +3,6 @@ import 'tailwindcss/tailwind.css';
 
 const customTheme = {
     ...theme,
-    maxW: {
-        ...theme.maxW,
-        base: 'auto',
-        xl: '1200px',
-    },
     colors: {
         ...theme.colors,
         primary: {
