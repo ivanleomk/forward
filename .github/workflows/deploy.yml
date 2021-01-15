@@ -1,8 +1,8 @@
-name: weekly episode deployment
+name: Deploying Action
 
 on:
     schedule:
-        - cron: '30 12 * * 3'
+        - cron: '59 23 * * *'
 
 jobs:
     deploy:
