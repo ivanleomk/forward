@@ -2,11 +2,12 @@ import React from 'react';
 import Mentors from '../app/components/Mentors';
 import getMentorList from '../app/api/getMentorList';
 import Link from 'next/link';
+import FilterForm from '../app/components/FilterForm';
 
 const mentors = ({mentorList}) => {
     return (
         <>
-            <Mentors mentorList={mentorList}>
+            <Mentors mentorList={mentorList} filter={true}>
                 <Link href="/" className="my-4">
                     <button
                         type="button"
