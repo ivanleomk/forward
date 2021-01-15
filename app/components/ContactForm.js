@@ -1,22 +1,70 @@
 import React, {useState} from 'react';
-import SubmitFormData from '../api/submitFormData';
+import {Button, BeatLoader} from '@chakra-ui/core';
+import {useToasts} from 'react-toast-notifications';
+
 const ContactForm = () => {
     const [fName, setfName] = React.useState('');
     const [lName, setlName] = React.useState('');
     const [industry, setIndustry] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [category, setCategory] = React.useState('mentoring');
+    const [Email, setEmail] = React.useState('');
+    const [Status, setCategory] = React.useState('mentoring');
     const [description, setDescription] = React.useState('');
+    const [isLoading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState('');
+
+    const {addToast} = useToasts();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(fName);
-        console.log(lName);
-        console.log(industry);
-        console.log(email);
-        console.log(category);
-        console.log(description);
-        SubmitFormData(fName, lName, industry, email, category, description);
+        if (
+            fName.length == 0 ||
+            lName.length == 0 ||
+            industry.length == 0 ||
+            Email.length == 0 ||
+            Status.length == 0 ||
+            description.length == 0
+        ) {
+            addToast('Please fill in all details', {
+                appearance: 'warning',
+                autoDismiss: true,
+            });
+            return;
+        }
+        setLoading(true);
+        var Airtable = require('airtable');
+        var base = new Airtable({apiKey: 'key8U892NYiPtsyCA'}).base('appwmI67yDCtlkUIP');
+        const newEntry = {
+            'First Name': fName,
+            'Last Name': lName,
+            Email,
+            'Current Industry': industry,
+            Status,
+            'Reason for Joining': description,
+        };
+        base('Table 1').create(
+            [
+                {
+                    fields: {
+                        ...newEntry,
+                    },
+                },
+            ],
+            function (err, records) {
+                if (err) {
+                    setLoading(false);
+                    addToast('Error submitting data to server, please try again later!', {
+                        appearance: 'warning',
+                        autoDismiss: true,
+                    });
+                    return;
+                }
+                setLoading(false);
+                addToast('Successfully Submitted Information!', {
+                    appearance: 'success',
+                    autoDismiss: true,
+                });
+            }
+        );
     };
 
     return (
@@ -127,7 +175,7 @@ const ContactForm = () => {
                             <div class="mt-1">
                                 <input
                                     id="email"
-                                    value={email}
+                                    value={Email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type="email"
                                     autocomplete="email"
@@ -146,7 +194,7 @@ const ContactForm = () => {
                                     name="capacity"
                                     rows="4"
                                     class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                                    value={category}
+                                    value={Status}
                                     onChange={(e) => setCategory(e.target.value)}
                                 >
                                     <option value="mentoring">Mentoring</option>
@@ -171,12 +219,15 @@ const ContactForm = () => {
                         </div>
 
                         <div class="sm:col-span-2">
-                            <button
+                            <Button
                                 type="submit"
-                                class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                isLoading={isLoading}
+                                loadingText="Submitting"
+                                colorScheme="teal"
+                                variant="outline"
                             >
-                                Let's talk
-                            </button>
+                                Submit
+                            </Button>
                         </div>
                     </form>
                 </div>

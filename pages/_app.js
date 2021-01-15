@@ -1,5 +1,6 @@
 import {ThemeProvider, theme} from '@chakra-ui/core';
 import 'tailwindcss/tailwind.css';
+import {ToastProvider} from 'react-toast-notifications';
 
 const customTheme = {
     ...theme,
@@ -21,9 +22,11 @@ const customTheme = {
 
 function MyApp({Component, pageProps}) {
     return (
-        <ThemeProvider theme={customTheme}>
-            <Component {...pageProps} />
-        </ThemeProvider>
+        <ToastProvider autoDismiss autoDismissTimeout={6000} placement="top-right">
+            <ThemeProvider theme={customTheme}>
+                <Component {...pageProps} />
+            </ThemeProvider>
+        </ToastProvider>
     );
 }
 

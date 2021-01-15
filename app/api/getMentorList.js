@@ -6,9 +6,8 @@ export default function getMentorList() {
     const mentors = [];
 
     return new Promise((resolve, reject) => {
-        base('Employee directory')
+        base('Employee Directory')
             .select({
-                // Selecting the first 3 records in All employees:
                 view: 'All employees',
             })
             .eachPage(
@@ -22,13 +21,14 @@ export default function getMentorList() {
                         const title = record.get('Title');
                         const industry = record.get('Industry');
                         const image = record.get('Photo');
-
+                        const core = record.get('Core Team') || false;
                         mentors.push({
                             name,
                             location,
                             title,
                             industry,
                             image,
+                            core,
                         });
                     });
 

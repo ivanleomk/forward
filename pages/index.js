@@ -20,8 +20,8 @@ const Landing = ({mentorList}) => {
         <>
             <Hero />
             <Testimonials />
-            <Mentors mentorList={mentorList} />
-
+            <Mentors mentorList={mentorList} core={true} description={'Meet the core team behind this initiative'} />
+            <CallToAction />
             <ContactForm />
             <Footer />
         </>
