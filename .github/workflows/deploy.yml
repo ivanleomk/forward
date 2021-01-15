@@ -1,21 +1,14 @@
-name: Daily Deploy
+name: weekly episode deployment
 
 on:
     schedule:
-        - cron: '0 0 * * *'
+        - cron: '30 12 * * 3'
 
 jobs:
     deploy:
         runs-on: ubuntu-latest
-
         steps:
-            - uses: actions/checkout@v1
-
-            - uses: actions/setup-node@v1
+            - uses: satak/webrequest-action@master
               with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: Build website
-              run: yarn && yarn build
-              env:
-                  AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+                  url: https://api.vercel.com/v1/integrations/deploy/prj_Le3uQY4UbAhIL3mNIdOeH9FGidc4/kJs55mcDRI
+                  method: POST
